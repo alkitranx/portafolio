@@ -1,0 +1,16 @@
+{
+  "name": "portafolio",
+  "version": "1.0.0",
+  "description": "api para crear portafolios",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/server/index.js"
+  },
+  "author": "Hender Chacon",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.12",
+    "sequelize": "^6.6.5"
+  }
+}
