@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express()
 
-require('./users')
+app.use(require('./users'))
 
 
   module.exports = app;

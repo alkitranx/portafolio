@@ -1,11 +1,12 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config');
+const user = require('./user')
 
 class Contact extends Model{}
 
 Contact.init({
     id: {
-        type: DataTypes.INTEGER, // TODO es una clave foranea del modelo users
+        type: DataTypes.INTEGER,
         allowNull: false,
         unique:true,
         primaryKey: true,
@@ -38,6 +39,9 @@ Contact.init({
     sequelize,
     modelName: "contact"
   });
+
+user.hasOne(Contact, {foreignKey: "userId"});
+Contact.belongsTo(user, {foreignKey: "userId"})
   
 
   module.exports = Contact;
