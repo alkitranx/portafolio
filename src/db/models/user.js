@@ -19,11 +19,21 @@ User.init({
       type: DataTypes.STRING,
       allowNull: false      
     },
+    status: {
+      type: DataTypes.ENUM('active', 'inactive'),
+      defaultValue: 'active',
+      allowNull: false
+  },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
-    }
+    },
+    role: {
+      type: DataTypes.ENUM('user', 'admin'),
+      allowNull: false,
+      defaultValue: 'user'
+  }
   }, {   
     sequelize,
     modelName: "user"
