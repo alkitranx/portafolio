@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const {User} = require("../../db/models")
+const {User} = require("../../db/models");
+const addUserController = require('../../controllers/userControllers')
 
 
 app.get('/users', (req, res) => {
@@ -9,16 +10,7 @@ app.get('/users', (req, res) => {
    .catch(error => res.status(400).json(error));
   });
 
-app.post('/users', (req, res) => {
-  const body = req.body
-  return User.create({ 
-    firstName: body.firstName,
-    lastName: body.lastName,
-    email: body.email,
-    role: body.role  
-  }).then(userCreate => res.status(201).json(userCreate)
-    ).catch(error => res.status(400).json(error));   
-});
+app.post('/users', addUserController);
 
 app.put('/users/:id', (req, res) => {
 

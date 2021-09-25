@@ -1,2 +1,3 @@
+# carpetas que no debe tomar en cuenta
 node_modules/
 .env
