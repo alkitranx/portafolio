@@ -14,10 +14,16 @@ function update(body, id) {
     return User.update(body, id)
 }
 
+function findbyEmail (email) {
+
+    return User.findAll({where:{email}})
+}
+
 
 
 module.exports = {
     create,
     update,
-    findAll
+    findAll,
+    findbyEmail
 }

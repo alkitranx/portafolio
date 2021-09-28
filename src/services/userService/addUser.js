@@ -1,20 +1,25 @@
 const {userRepository} = require('../../repositories/index');
 
-const addUser = (req, res) => {
+    async function addUser (user) {   
 
-    const body = req.body;
+       /*  let email = await userRepository.findbyEmail(user.email) 
 
-    return userRepository.create({
-        firstName: body.firstName,
-        lastName: body.lastName,
-        email: body.email,
-        role: body.role
-    }).then(userCreate => res.status(201).json(userCreate)
-    ).catch(error => res.status(400).json(error))
+        if(email.length !== 0) */ // TODO REVISAR LA VALIDACION DEL MAIL 
+        
+        
+        return await userRepository.create(user)}
+        
+        
 
-};
+      async function getAll() {
+
+        return await userRepository.findAll()
+     }   
+    
 
 
 module.exports = {
-    addUser
+    addUser,
+    getAll
 }
+

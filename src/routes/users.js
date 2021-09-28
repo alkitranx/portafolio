@@ -1,16 +1,13 @@
 const express = require('express');
 const app = express();
-const {User} = require("../../db/models");
-const addUserController = require('../../controllers/userControllers')
+const {User} = require('../db/models')
+const userController = require('../controllers/userControllers')
+const {checkFirstName,checkLastName,checkEmail, checkPassword} = require('../midlewares/validations/validationUsers')
 
 
-app.get('/users', (req, res) => {
-   return User.findAll()
-   .then(userEntities => res.json(userEntities))
-   .catch(error => res.status(400).json(error));
-  });
+app.get('/users/', userController.getAll)
 
-app.post('/users', addUserController);
+app.post('/users', [checkFirstName, checkLastName, checkPassword, checkEmail], userController.addUser);
 
 app.put('/users/:id', (req, res) => {
 
