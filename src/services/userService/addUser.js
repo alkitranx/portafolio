@@ -11,7 +11,7 @@ const {userRepository} = require('../../repositories/index');
         
         
 
-      async function getAll() {
+    async function getAll() {
 
         return await userRepository.findAll()
      }   
