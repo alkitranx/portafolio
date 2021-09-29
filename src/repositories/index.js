@@ -1,3 +1,4 @@
 module.exports = {
-    userRepository: require('./userRepository')
+    userRepository: require('./userRepository'),
+    proyectsRepository: require('./proyectsRepository')
 }

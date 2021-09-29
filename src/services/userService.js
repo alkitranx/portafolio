@@ -1,4 +1,4 @@
-const {userRepository} = require('../../repositories/index');
+const {userRepository} = require('../repositories/userRepository');
 
     async function addUser (user) {   
 
@@ -17,9 +17,22 @@ const {userRepository} = require('../../repositories/index');
      }   
     
 
+     async function updateUser(user, id) {
+
+        // TODO hacer validacion del email si se repite o no se repite
+
+       return await userRepository.update(user, id)
+     };
+
+     async function deleteUser(user, id) {
+         return await userRepository.update(user, id)
+     }
+
 
 module.exports = {
     addUser,
-    getAll
+    getAll,
+    updateUser,
+    deleteUser
 }
 
