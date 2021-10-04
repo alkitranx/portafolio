@@ -28,7 +28,7 @@ Contact.init({
         type: DataTypes.STRING,
         allowNull: true,
     },
-    facebook: {
+    github: {
         type: DataTypes.STRING,
         allowNull: true,
     },
