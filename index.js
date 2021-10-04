@@ -19,7 +19,7 @@ const {User, Comments, Contact, Proyect} = require('./src/db/models');
  
 app.listen(3000, (req, res) => {
   console.log('Server online');
-   sequelize.sync({force: false})
+    /* sequelize.sync({force: false})
   .then(() => {console.log("OK conexion BD")})
-  .catch(error =>{console.log("hubo un problema de conexion", error)})  
+  .catch(error =>{console.log("hubo un problema de conexion", error)}) */
 });

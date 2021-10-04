@@ -23,7 +23,9 @@ const {validationResult} = require('express-validator');
 
     return await userService.addUser(user)
     .then(userCreated => res.status(201).json(userCreated))
-    .catch(error => res.status(400).json(error));
+    .catch((error)=>{
+        return res.status(400).json({message: error.message})
+    });
 }
 
 // controlador de listado de usuarios

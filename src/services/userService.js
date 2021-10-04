@@ -1,13 +1,17 @@
-const {userRepository} = require('../repositories/userRepository');
+const {userRepository} = require('../repositories/index');
 
     async function addUser (user) {   
 
-       /*  let email = await userRepository.findbyEmail(user.email) 
+       let email = await userRepository.findbyEmail(user.email) 
 
-        if(email.length !== 0) */ // TODO REVISAR LA VALIDACION DEL MAIL 
+        if(email.length !== 0) {
+            console.log(email)
+            throw new Error(' email ya en uso ')
+        }
         
-        
-        return await userRepository.create(user)}
+              
+        return await userRepository.create(user)
+    }
         
         
 

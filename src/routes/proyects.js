@@ -1,11 +1,16 @@
 const express = require('express');
 const app = express();
-const {checkDescription, checkName} = require('../midlewares/validations/validationsProyects')
+const {checkDescription, checkName, checkUserId, checkRepository} = require('../midlewares/validations/validationsProyects')
 
 
-const proyectsController = require('../controllers/proyectsController')
+const proyectsController = require('../controllers/proyectsController');
 
-app.post('/proyects',[checkDescription, checkName], proyectsController.addProyect)
+
+app.post('/proyects',[checkDescription, checkName, checkRepository, checkUserId], proyectsController.addProyect)
+
+app.get('/proyects', proyectsController.getAllProyects)
+
+app.get('/proyects/userId',proyectsController.findByUserIdAndName)
 
 
 module.exports = app;

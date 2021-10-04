@@ -10,19 +10,22 @@ function getAll () {
 
 function findByUserId (userId) {
 
-    return Proyect.getAll({where:{userId}})
-
+    return Proyect.findAll({where:{userId}})
 }
 
 function findById (id) {
 
-    return Proyect.getAll({where:{id}})
+    return Proyect.findAll({where:{id}})
+}
 
+function findByUserIdAndName (userId, name) {
+
+    return Proyect.findAll(userId, name)
 }
 
 function update (body, id) {
 
-    return Proyect.create({body}, {where:{id}})
+    return Proyect.update({body}, {where:{id}})
 }
 
 function deleteProyect (id) {
@@ -36,5 +39,6 @@ module.exports = {
     findByUserId,
     update,
     findById,
-    deleteProyect
+    deleteProyect,
+    findByUserIdAndName
 }

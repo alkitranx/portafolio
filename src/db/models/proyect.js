@@ -20,10 +20,10 @@ Proyect.init({
       type: DataTypes.STRING,
       allowNull: false      
     },
-    images: {
+    repository: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+        allowNull: true,
+        
     }
   }, {   
     sequelize,
