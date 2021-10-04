@@ -25,11 +25,11 @@ function findByUserIdAndName (userId, name) {
 
 function update (body, id) {
 
-    return Proyect.update({body}, {where:{id}})
+    return Proyect.update(body, id)
 }
 
 function deleteProyect (id) {
-    return Proyect.destroy({where:{id}})
+    return Proyect.destroy(id)
 }
 
 

@@ -5,7 +5,7 @@ const {proyectsRepository } = require('../repositories/index')
 
 async function findByUserIdAndName (user, name) {
 
-    const resultado = await proyectsRepository.findByUserIdAndName(user, name);
+    const resultado = await proyectsRepository.findByUserIdAndName(user, name); // TODO revisar si es necesario dejar este servicio o no o si tengo que hacer un controlador del mismo
     console.log(resultado)
     return resultado;
           
@@ -31,9 +31,25 @@ async function getAll (){
 }
 
 
+async function update(proyect, id) {
+
+    return await proyectsRepository.update(proyect, id)
+
+} 
+
+async function destroy(id) {
+
+    return await proyectsRepository.deleteProyect(id)
+
+} 
+
+
 
 module.exports = {
     addProyect,
     getAll,
-    findByUserIdAndName
+    findByUserIdAndName,
+    destroy,
+    update
+    
 }
