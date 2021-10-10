@@ -11,12 +11,17 @@ function create(body) {
 }
 
 function update(body, id) {
-    return User.update(body, id)
+    return User.update(body, {where:{id}})
 }
 
-function findbyEmail (email) {
+function findByEmail (email) {
 
     return User.findAll({where:{email}})
+}
+
+function findById (id) {
+
+    return User.findAll({where:{id}})
 }
 
 
@@ -25,5 +30,6 @@ module.exports = {
     create,
     update,
     findAll,
-    findbyEmail
+    findByEmail,
+    findById
 }
