@@ -28,6 +28,10 @@ function findById (id) {
     return User.findAll({where:{id}})
 }
 
+function findByEmail1 (email) {
+
+    return User.findAll({where:email})
+}
 
 
 module.exports = {
@@ -36,5 +40,6 @@ module.exports = {
     findAll,
     findByEmail,
     findById,
-    passwordFindByEmail
+    passwordFindByEmail,
+    findByEmail1
 }

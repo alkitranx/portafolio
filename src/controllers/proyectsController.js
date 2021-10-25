@@ -5,6 +5,12 @@ const {validationResult} = require('express-validator');
 // controlador de creacion de proyectos
 
 const addProyect = async (req, res) => {
+
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()})
+    };
+
     let body = req.body
     let proyect = {
         name:body.name,
@@ -23,6 +29,11 @@ const addProyect = async (req, res) => {
 // controlador de get proyectos todos
 
 const getAllProyects = async (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()})
+    };
+
     return await proyectService.getAll()
     .then(FindAllProyect => res.status(200).json(FindAllProyect))
     .catch(error => res.status(400).json(error))
@@ -30,6 +41,12 @@ const getAllProyects = async (req, res) => {
 
 // controlador de consulta de proyectos por id de usuario y por nombre de proyecto
 const findByUserIdAndName = async (req, res) => {
+
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()})
+    };
+
     let body =  req.body;
     
     return await proyectService.findByUserIdAndName({where:{userId:body.userId, name: body.name}})
@@ -41,6 +58,11 @@ const findByUserIdAndName = async (req, res) => {
 // controlador de actualizacion de proyectos
 
 const update = async (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()})
+    };
+
     let id = req.params.id
     let body = req.body
     let proyect = {
@@ -59,9 +81,16 @@ const update = async (req, res) => {
 
 // controlador para eliminar proyectos
 const destroy = async (req, res) => {
+
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()})
+    };
+    
     id = req.params.id;
 
-    return await proyectService.destroy({where:{id}}).then(proyectDelete => res.status(200).json(proyectDelete))
+    return await proyectService.destroy({where:{id}})
+    .then(proyectDelete => res.status(200).json(proyectDelete))
     .catch(error => res.status(400).json(error.message))
 
 }

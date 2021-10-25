@@ -12,9 +12,9 @@ app.get('/proyects', proyectsController.getAllProyects);
 
 app.get('/proyects/userId',proyectsController.findByUserIdAndName);
 
-app.put('/proyects/:id', proyectsController.update);
+app.put('/proyects/:id', [checkDescription, checkName, checkRepository], proyectsController.update);
 
-app.delete('/proyects/:id',proyectsController.destroy);
+app.delete('/proyects/:id', proyectsController.destroy);
 
 
 

@@ -3,7 +3,7 @@ const {userRepository} = require('../repositories/index');
 
     async function addUser (user) {   
 
-       let email = await findByEmail({email: user.email}) 
+       let email = await userRepository.findByEmail1({email: user.email}) // TODO:  revisar porque no me deja usarlo con el metodo findOne
        let password = user.password
        
         if(email.length !== 0) {
@@ -11,7 +11,7 @@ const {userRepository} = require('../repositories/index');
             throw new Error(' this email is already in use')
         }
         
-        if(password.length<6){
+        if(password.length <6){
             console.log(password)
             throw new Error('the password is mandatory and with a minimum of 6 characters')
         }
@@ -42,14 +42,14 @@ const {userRepository} = require('../repositories/index');
      async function updateUser(user, id) {
         
         let userId = await findById(id.id)
-        let email =  await  findByEmail(user.email)
+        let email =  await  userRepository.findByEmail1({email:user.email})
         
         if(userId == 0){
             console.log(id.id)
             throw new Error('This user does not exist')
         }
 
-        if(email !== 0) {
+        if(email.length !== 0) {
             throw new Error(' this email is already in use')
         }
 
