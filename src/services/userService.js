@@ -3,7 +3,7 @@ const {userRepository} = require('../repositories/index');
 
     async function addUser (user) {   
 
-       let email = await findByEmail(user.email) 
+       let email = await findByEmail({email: user.email}) 
        let password = user.password
        
         if(email.length !== 0) {
@@ -17,8 +17,7 @@ const {userRepository} = require('../repositories/index');
         }
 
         return await userRepository.create(user)
-    }
-        
+    }        
         
 
     async function getAll() {
@@ -26,12 +25,16 @@ const {userRepository} = require('../repositories/index');
         return await userRepository.findAll()
      }   
 
-    async function findByEmail(email) { // TODO quiero saber si esta es repetitiva o si puedo reuzarla arriba en el ADD
+    async function findByEmail(email) { 
         console.log(email)
         return await userRepository.findByEmail(email)
     } 
+    async function passwordFindByEmail(email) { 
+        console.log(email)
+        return await userRepository.passwordFindByEmail(email)
+    } 
     
-    async function findById(id) { // TODO quiero saber si esta es repetitiva o si puedo reuzarla arriba en el ADD
+    async function findById(id) { 
         console.log(id)
         return await userRepository.findById(id)
     } 
@@ -74,6 +77,7 @@ module.exports = {
     updateUser,
     deleteUser,
     findByEmail,
-    findById
+    findById,
+    passwordFindByEmail
 }
 

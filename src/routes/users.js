@@ -16,10 +16,6 @@ app.put('/users/:id',[checkFirstName, checkLastName, checkEmail, checkId], userC
 
 app.delete('/users/:id', [checkId], userController.deleteUser);
 
- 
-
-
-
 
 
   module.exports = app;

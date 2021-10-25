@@ -1,5 +1,6 @@
 const userService = require('../services/userService');
 const {validationResult} = require('express-validator');
+const bcrypt = require('bcrypt')
 
 
 
@@ -12,15 +13,16 @@ const {validationResult} = require('express-validator');
         return res.status(400).json({errors: errors.array()})
     };
     
-    let body = req.body
+    let body = req.body;
+    let password = await bcrypt.hash(body.password,8)
+      
     let user = {
         firstName: body.firstName,
         lastName: body.lastName,
         email: body.email,
         role: body.role,
-        password: body.password
+        password: password
     };
-
     return await userService.addUser(user)
     .then(userCreated => res.status(201).json(userCreated))
     .catch((error)=>{
@@ -51,7 +53,7 @@ const {validationResult} = require('express-validator');
     const findByEmail = async (req, res) => {
 
         let email = req.body.email;      
-        return await userService.findByEmail(email)
+        return await userService.findByEmail({email})
         .then(findByEmail => res.status(200).json(findByEmail))
         .catch(error => res.status(400).json(error.message))
     }

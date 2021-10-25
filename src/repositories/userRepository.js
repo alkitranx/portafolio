@@ -16,7 +16,11 @@ function update(body, id) {
 
 function findByEmail (email) {
 
-    return User.findAll({where:{email}})
+    return User.findOne({where:email})
+}
+function passwordFindByEmail (email) {
+
+    return User.findAll({attributes:['password'],where:email})
 }
 
 function findById (id) {
@@ -31,5 +35,6 @@ module.exports = {
     update,
     findAll,
     findByEmail,
-    findById
+    findById,
+    passwordFindByEmail
 }
