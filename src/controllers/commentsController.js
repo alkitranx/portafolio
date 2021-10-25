@@ -1,8 +1,15 @@
 const commentsService = require('../services/commentsService');
+const{validationResult} = require('express-validator')
 
 // controlador para crear un comentario
 
 const addComment = async (req, res) => {
+    
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()})
+    };
+
     let body = req.body;
     let comment = {
         email:body.email,
@@ -16,7 +23,12 @@ const addComment = async (req, res) => {
 };
 
 const getAll = async (req, res) => {
-   
+    
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors: errors.array()})
+    };
+
     return await commentsService.getAll()
     .then(allComments => res.status(200).json(allComments))
     .catch(error => res.status(400).json(error.message))
