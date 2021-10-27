@@ -1,21 +1,22 @@
 const commentsRepository = require('../repositories/commentsRepository');
 
-async function add(comment) {
+ function add(comment) {
 
-    return await commentsRepository.add(comment)
+    return  commentsRepository.add(comment)
 }
 
-async function getAll() {
+ function getAll() {
 
-    return await commentsRepository.getAll()
+    return  commentsRepository.getAll()
 }
 
-async function findByIdProyect(idProyect) {
-    return await commentsRepository.findByIdProyect(idProyect)
+ function findByIdProyect(proyectId) {
+
+    return  commentsRepository.findByIdProyect({where:{proyectId: proyectId}})
 }
 
-async function destroy(idProyect) {
-    return await commentsRepository.deleteComment(idProyect)
+ function destroy(idProyect) {
+    return  commentsRepository.deleteComment(idProyect)
 }
 
 

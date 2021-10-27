@@ -3,7 +3,7 @@ const{validationResult} = require('express-validator')
 
 // controlador para crear un comentario
 
-const addComment = async (req, res) => {
+const addComment =  (req, res) => {
     
     const errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -17,38 +17,38 @@ const addComment = async (req, res) => {
         proyectId: body.proyectId,
     };
 
-    return await commentsService.add(comment)
+    return  commentsService.add(comment)
     .then(newComment => res.status(201).json(newComment))
     .catch(error => res.status(400).json(error.message))
 };
 
-const getAll = async (req, res) => {
+const getAll =  (req, res) => {
     
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()})
     };
 
-    return await commentsService.getAll()
+    return  commentsService.getAll()
     .then(allComments => res.status(200).json(allComments))
     .catch(error => res.status(400).json(error.message))
 };
 
 
-const findByIdProyect = async (req, res) => {
-    let body = req.body;
-    let proyectId = body.proyectId;    
+const findByIdProyect =  (req, res) => {
+    const body = req.body;
+    const proyectId = body.proyectId;    
 
-    return await commentsService.findByIdProyect(proyectId)
+    return  commentsService.findByIdProyect(proyectId)
     .then(commentById => res.status(200).json(commentById))
     .catch(error => res.status(400).json(error.message))
 };
 
 
-const deleteComment = async (req, res) => {
-   let id = req.params.id;
+const deleteComment =  (req, res) => {
+   const id = req.params.id;
 
-    return await commentsService.destroy({where:{id}})
+    return  commentsService.destroy({where:{id}})
     .then(commentDelete => res.status(200).json(commentDelete))
     .catch(error => res.status(400).json(error.message))
 };

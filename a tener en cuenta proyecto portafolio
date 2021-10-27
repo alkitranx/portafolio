@@ -1,0 +1,4 @@
+ 1. en el endpoint de consulta de usuarios diferencias activos de inactivos
+ 2. en el endpoint de consulta de usuarios quitar el password de la respuesta
+ 3. en el endpoint de creacion de comentarios falta un mensaje para cuando el id de proyecto este errado
+ 

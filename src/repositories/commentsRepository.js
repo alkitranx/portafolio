@@ -11,8 +11,8 @@ function getAll () {
 
 }
 
-function findByIdProyect(idProyect) {
-    return Comments.findAll(idProyect)
+function findByIdProyect(proyectId) {
+    return Comments.findAll(proyectId)
 }
 
 function deleteComment(id) {
