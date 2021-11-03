@@ -4,7 +4,7 @@ const {validationResult} = require('express-validator');
 
 // controlador de creacion de proyectos
 
-const addProyect = async (req, res) => {
+const addProyect =  (req, res) => {
 
     const errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -19,7 +19,7 @@ const addProyect = async (req, res) => {
         repository: body.repository
     };
 
-    return await proyectService.addProyect(proyect)
+    return  proyectService.addProyect(proyect)
     .then(newProyect => res.status(201).json(newProyect))
     .catch((error)=>{
         return res.status(400).json({message: error.message})
@@ -28,19 +28,19 @@ const addProyect = async (req, res) => {
 
 // controlador de get proyectos todos
 
-const getAllProyects = async (req, res) => {
+const getAllProyects =  (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()})
     };
 
-    return await proyectService.getAll()
+    return  proyectService.getAll()
     .then(FindAllProyect => res.status(200).json(FindAllProyect))
     .catch(error => res.status(400).json(error))
 }
 
 // controlador de consulta de proyectos por id de usuario y por nombre de proyecto
-const findByUserIdAndName = async (req, res) => {
+const findByUserIdAndName =  (req, res) => {
 
     const errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -49,7 +49,7 @@ const findByUserIdAndName = async (req, res) => {
 
     let body =  req.body;
     
-    return await proyectService.findByUserIdAndName({where:{userId:body.userId, name: body.name}})
+    return  proyectService.findByUserIdAndName({where:{userId:body.userId, name: body.name}})
     .then(FindAllProyect => res.status(200).json(FindAllProyect))
     .catch(
         (error) => {res.status(400).json({message: error.message})}
@@ -57,7 +57,7 @@ const findByUserIdAndName = async (req, res) => {
 
 // controlador de actualizacion de proyectos
 
-const update = async (req, res) => {
+const update =  (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()})
@@ -71,7 +71,7 @@ const update = async (req, res) => {
         repository: body.repository
     };
     console.log(proyect)
-    return await proyectService.update({
+    return  proyectService.update({
         name: body.name,
         description: body.description,
         repository: body.repository},{where:{id}})
@@ -80,7 +80,7 @@ const update = async (req, res) => {
 }    
 
 // controlador para eliminar proyectos
-const destroy = async (req, res) => {
+const destroy =  (req, res) => {
 
     const errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -89,7 +89,7 @@ const destroy = async (req, res) => {
     
     id = req.params.id;
 
-    return await proyectService.destroy({where:{id}})
+    return  proyectService.destroy({where:{id}})
     .then(proyectDelete => res.status(200).json(proyectDelete))
     .catch(error => res.status(400).json(error.message))
 

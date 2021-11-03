@@ -1,7 +1,7 @@
 const {proyectsRepository, userRepository } = require('../repositories/index')
 
 
-// servicio de creacion de proyectos
+
 
 async function findByUserIdAndName (user, name) {
 
@@ -15,6 +15,7 @@ async function findByUserIdAndName (user, name) {
           
 }
 
+// servicio de creacion de proyectos
 
 async function addProyect (proyect) {  
 
@@ -30,25 +31,25 @@ async function addProyect (proyect) {
         throw new Error('este nombre ya esta en uso')
         
     }
-   return await proyectsRepository.add(proyect)
+   return proyectsRepository.add(proyect)
 }
 
 
 
-async function getAll (){
-    return await proyectsRepository.getAll()
+function getAll (){
+    return proyectsRepository.getAll()
 }
 
 
-async function update(proyect, id) {
+function update(proyect, id) {
 
-    return await proyectsRepository.update(proyect, id)
+    return proyectsRepository.update(proyect, id)
 
 } 
 
-async function destroy(id) {
+function destroy(id) {
 
-    return await proyectsRepository.deleteProyect(id)
+    return proyectsRepository.deleteProyect(id)
 
 } 
 

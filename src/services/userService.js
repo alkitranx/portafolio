@@ -16,30 +16,30 @@ const {userRepository} = require('../repositories/index');
             throw new Error('the password is mandatory and with a minimum of 6 characters')
         }
 
-        return await userRepository.create(user)
+        return userRepository.create(user)
     }        
         
 
-    async function getAll() {
+    function getAll() {
 
-        return await userRepository.findAll()
+        return userRepository.findAll()
      }   
 
-    async function findByEmail(email) { 
+    function findByEmail(email) { 
         console.log(email)
-        return await userRepository.findByEmail(email)
+        return userRepository.findByEmail(email)
     } 
-    async function passwordFindByEmail(email) { 
+    function passwordFindByEmail(email) { 
         console.log(email)
-        return await userRepository.passwordFindByEmail(email)
+        return userRepository.passwordFindByEmail(email)
     } 
     
-    async function findById(id) { 
+    function findById(id) { 
         console.log(id)
-        return await userRepository.findById(id)
+        return userRepository.findById(id)
     } 
 
-     async function updateUser(user, id) {
+    async function updateUser(user, id) {
         
         let userId = await findById(id.id)
         let email =  await  userRepository.findByEmail1({email:user.email})
@@ -53,10 +53,10 @@ const {userRepository} = require('../repositories/index');
             throw new Error(' this email is already in use')
         }
 
-       return await userRepository.update(user, id.id)
+       return userRepository.update(user, id.id)
      }
-
-     async function deleteUser(user, id) {
+    
+    async function deleteUser(user, id) {
 
         let userId = await findById(id.id)
 
@@ -65,7 +65,7 @@ const {userRepository} = require('../repositories/index');
             throw new Error('This user does not exist')
         }
 
-         return await userRepository.update(user, id.id)
+         return userRepository.update(user, id.id)
      }
 
 

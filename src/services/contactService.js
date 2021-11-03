@@ -1,20 +1,20 @@
 const contactRepository = require('../repositories/contacRepository');
 
 
-async function add(body) {
-    return await contactRepository.add(body)
+ function add(body) {
+    return  contactRepository.add(body)
 }
 
-async function findByUserId(userid) {
-    return await contactRepository.findByUserId(userid)
+function findByUserId(userid) {
+    return  contactRepository.findByUserId(userid)
 }
 
-async function update(body, id) {
-    return await contactRepository.modify(body, id)
+function update(body, id) {
+    return  contactRepository.modify(body, id)
 }
 
-async function destroy(id) {
-    return await contactRepository.deleteContact(id)
+function destroy(id) {
+    return  contactRepository.deleteContact(id)
 }
 
 

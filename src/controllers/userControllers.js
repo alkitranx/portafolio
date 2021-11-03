@@ -23,7 +23,7 @@ const bcrypt = require('bcrypt')
         role: body.role,
         password: password
     };
-    return await userService.addUser(user)
+    return  userService.addUser(user)
     .then(userCreated => res.status(201).json(userCreated))
     .catch((error)=>{
         return res.status(400).json({message: error.message})
@@ -32,7 +32,7 @@ const bcrypt = require('bcrypt')
 
 // controlador de listado de usuarios
 
-    const getAll = async (req, res) => {
+    const getAll =  (req, res) => {
 
         const errors = validationResult(req); 
         if(!errors.isEmpty()){
@@ -41,7 +41,7 @@ const bcrypt = require('bcrypt')
 
         let limit = req.query.limit;
         let offset = req.query.offset; //TODO revisar como setear de mejor forma el listado para que sea mas util no entiendo como se une con el fronted
-        return await userService.getAll(
+        return userService.getAll(
             {where:{status: 'active'}},
             {limit: Number(limit), offset: Number(offset)} )
             .then(getAllUser => res.status(200).json(getAllUser))
@@ -50,18 +50,18 @@ const bcrypt = require('bcrypt')
 
     // controlador de usuario filtrados por el email del usuario
 
-    const findByEmail = async (req, res) => {
+    const findByEmail = (req, res) => {
 
         let email = req.body.email;      
-        return await userService.findByEmail({email})
+        return userService.findByEmail({email})
         .then(findByEmail => res.status(200).json(findByEmail))
         .catch(error => res.status(400).json(error.message))
     }
 
-    const findById = async (req, res) => {
+    const findById = (req, res) => {
 
         let id = req.params.id;      
-        return await userService.findById(id)
+        return userService.findById(id)
         .then(findByEmail => res.status(200).json(findByEmail))
         .catch(error => res.status(400).json(error.message))
     }
@@ -69,7 +69,7 @@ const bcrypt = require('bcrypt')
 
 // controlador para la modificacion del usuario
 
-    const updateUser = async (req, res) => {
+    const updateUser =  (req, res) => {
 
         const errors = validationResult(req); 
         if(!errors.isEmpty()){
@@ -78,7 +78,7 @@ const bcrypt = require('bcrypt')
 
         let body =  req.body;
         let id = req.params.id;
-        return await userService.updateUser({
+        return userService.updateUser({
             firstName: body.firstName,
             lastName: body.lastName,
              email: body.email}
@@ -90,7 +90,7 @@ const bcrypt = require('bcrypt')
 
 // desactivar usuarios
 
-    const deleteUser = async (req, res) => {
+    const deleteUser = (req, res) => {
 
         const errors = validationResult(req); 
         if(!errors.isEmpty()){
@@ -99,7 +99,7 @@ const bcrypt = require('bcrypt')
         
         let id = req.params.id;
 
-        return await userService.deleteUser({
+        return userService.deleteUser({
             status: 'inactive'
         }, {id})
         .then(deleteUser => res.status(200).json(deleteUser))
