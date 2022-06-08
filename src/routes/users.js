@@ -2,15 +2,17 @@ const express = require('express');
 const app = express();
 
 const authRole = require('../midlewares/roleValidations')
+const pruebaController = require('../controllers/controllerprueba');
 const userController = require('../controllers/userControllers');
 const {checkFirstName,checkLastName,checkEmail, checkPassword, checkId} = require('../midlewares/validations/validationUsers');
 
 
-app.get('/users/', authRole, userController.getAll);
+//app.get('/users/', authRole, userController.getAll);
 
 app.get('/users/email', authRole, userController.findByEmail);
 
-app.get('/users/:id', userController.findById);
+//app.get('/users/:id', userController.findById);
+app.get('/users/', pruebaController.revision);
 
 app.post('/users', [checkFirstName, checkLastName, checkPassword, checkEmail], userController.addUser);
 
